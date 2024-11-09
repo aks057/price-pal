@@ -38,7 +38,7 @@ export async function scrapAndStoreProduct (productUrl :string){
             {upsert:true,new:true}
         );
 
-        revalidatePath(`/products/${newProduct._id}`);
+        revalidatePath(`/products/${newProduct._id}`);//from nextjs
         // redirect(`/products/${newProduct._id}`);
     }
     catch(e: any){
@@ -70,7 +70,7 @@ export async function getAllProducts (){
         console.log(e);
     }
 }
-
+//track email
 export async function addUserEmailToProduct(productId:string,userEmail:string){
     try{
         const product = await Product.findById(productId);

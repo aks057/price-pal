@@ -1,38 +1,50 @@
 'use client'
 import React from 'react'
-import Image from 'next/image' 
-import "react-responsive-carousel/lib/styles/carousel.min.css"; 
-import { Carousel } from 'react-responsive-carousel';
+import Image from 'next/image'
+import "react-responsive-carousel/lib/styles/carousel.min.css"
+import { Carousel } from 'react-responsive-carousel'
 
 const heroImages = [
-    {src:'/assets/images/hero-3.svg',alt:'lamp'},
-    {src:'/assets/images/hero-2.svg',alt:'bag'},
-    {src:'/assets/images/hero-1.svg',alt:'smartwatch'},
-    {src:'/assets/images/hero-4.svg',alt:'air fryer'},
-    {src:'/assets/images/hero-5.svg',alt:'chair'},
+  {src:'/assets/images/i.jpg', alt:'iphone', title: 'iphone', description: ''},
+  {src:'/assets/images/ear.jpg', alt:'ear', title: 'ear', description: ''},
+    {src:'/assets/images/smar.jpg', alt:'smart', title: 'smart', description: ''},
+    {src:'/assets/images/mac.jpg', alt:'Bag', title: 'MAC', description: ''},
+    
+    
 ]
 
 export const HeroCarousel = () => {
   return (
-    <div className=' hero-carousel blurred mt-[12vh]'>
+    <div className='hero-carousel card-flip'>
         <Carousel
-        showThumbs={false}
-        autoPlay
-        infiniteLoop
-        interval={2000}
-        showArrows={true}
-        showStatus={false}
+        
+          showThumbs={false}
+          autoPlay
+          infiniteLoop
+          interval={3000}
+          showArrows={false}
+          showStatus={false}
+          swipeable={true}
         >
-                {heroImages.map((images)=>(
+          {heroImages.map((item) => (
+            <div key={item.alt} className="card-flip-slide">
+              <div className="flip-card">
+                <div className="flip-card-inner">
+                  <div className="flip-card-front">
                     <Image
-                    src={images.src}
-                    alt={images.alt}
-                    key={images.alt}
-                    height={484}
-                    width={484}
+                      src={item.src}
+                      alt={item.alt}
+                      height={400}
+                      width={400}
+                      className="card-flip-image mt-5"
                     />
-                ))}
-            </Carousel>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          ))}
+        </Carousel>
     </div>
   )
 }

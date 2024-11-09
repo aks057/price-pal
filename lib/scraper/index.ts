@@ -3,7 +3,7 @@ import { extractPrice,extractCurrency,extractDescription } from "../utils";
 import * as cheerio from 'cheerio';
 export async function scrapAmazonProduct(url: string){
     if(!url) return ;
-
+  //Bright data config 
     const username = String(process.env.BRIGHT_DATA_USERNAME);
     const password = String( process.env.BRIGHT_DATA_PASSWORD);
     const port = 22225
@@ -17,11 +17,12 @@ export async function scrapAmazonProduct(url: string){
         port,
         rejectUnauthorized:false,
     }
-
+    //fetch product product page
     try{
         const response = await axios.get(url,options);
         const $ = cheerio.load(response.data);
         const title = $('#productTitle').text().trim();
+
         const currentPrice = extractPrice(
           $('.priceToPay span.a-price-whole'),
           $('.a.size.base.a-color-price'),
@@ -35,7 +36,7 @@ export async function scrapAmazonProduct(url: string){
           $('#priceblock_dealprice'),
           $('.a-size-base.a-color-price')
         );
-    
+        //image
         const outOfStock = $('#availability span').text().trim().toLowerCase().substring(0,21) === 'currently unavailable';
         console.log($('#availability span').text().trim().toLowerCase().substring(0,21));
     
@@ -45,7 +46,7 @@ export async function scrapAmazonProduct(url: string){
           '{}'
     
         const imageUrls = Object.keys(JSON.parse(images));
-    
+        
         const currency = extractCurrency($('.a-price-symbol'))
         const discountRate = $('.savingsPercentage').text().replace(/[-%]/g, "");
     

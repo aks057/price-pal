@@ -27,7 +27,7 @@ export async function generateEmailBody(
         subject = `Welcome to Price Tracking for ${shortenedTitle}`;
         body = `
           <div>
-            <h2>Welcome to Price Tracker 🚀</h2>
+            <h2>Welcome to PricePal 🚀</h2>
             <p>You are now tracking ${product.title}.</p>
             <p>Here's an example of how you'll receive updates:</p>
             <div style="border: 1px solid #ccc; padding: 10px; background-color: #f8f8f8;">
@@ -77,51 +77,6 @@ export async function generateEmailBody(
   
     return { subject, body };
   }
-
-  // const transporter = nodemailer.createTransport({
-  //   pool:true,
-  //   service:'hotmail',
-  //   port:2525,
-  //   auth:{
-  //       user:'lakshay.rohilla@outlook.com',
-  //       pass:process.env.EMAIL_PASSWORD,
-  //   },
-  //   maxConnections:1
-  // })
-  // const transporter = nodemailer.createTransport({
-  //   host: 'smtp.office365.com',
-  //   port: 587,
-  //   secure: false, // true for 465, false for other ports
-  //   auth: {
-  //     user: 'lakshay.rohilla@outlook.com',
-  //     pass: process.env.EMAIL_PASSWORD, // Consider switching to OAuth
-  //   },
-  // });
-  // const transporter = nodemailer.createTransport({
-  //   service: 'gmail',
-  //   auth: {
-  //     user: 'hgfe3279@gmail.com',
-  //     pass: process.env.GMAIL_PASSWORD, // Use an App Password if 2FA is enabled
-  //   },
-  // });
-  
-// export const sendEmail  = async(emailContent:EmailContent,sendTo:string[])=>{
-//   console.log("first")
-//     const mailOptions = {
-//         from :'hgfe3279@gmail.com',
-//         to:sendTo,
-//         html:emailContent.body,
-//         subject:emailContent.subject,
-//     }
-//     console.log("second")
-
-//     transporter.sendMail(mailOptions,(error:any,info:any)=>{
-//     console.log("third")
-
-//         if(error) return console.log(`********** ${error}`);
-//         console.log('Email sent:',info);
-//     })
-// }
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.zoho.in', // Zoho SMTP server

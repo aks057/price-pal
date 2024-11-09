@@ -6,7 +6,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({subsets:['latin'], weight:['300','400','500','600','700']})
 export const metadata: Metadata = {
-  title: "Price Tracker",
+  title: "PricePal",
   description: "Easy way to track products prices.",
 };
 

@@ -17,7 +17,7 @@ export async function GET(request: Request) {
     const products = await Product.find({});
 
     if (!products || products.length === 0) throw new Error("No product fetched");
-
+    //latest product
     const updatedProducts = await Promise.all(
       products.map(async (currentProduct) => {
         try {
@@ -47,7 +47,7 @@ export async function GET(request: Request) {
             product,
             { new: true } // Return the updated product
           );
-
+          //chect status and send mail
           const emailNotifType = getEmailNotifType(scrapedProduct, currentProduct);
 
           if (emailNotifType && updatedProduct.users.length > 0) {
